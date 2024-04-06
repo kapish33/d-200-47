@@ -1,6 +1,7 @@
 import { assets } from "@/assets";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Hero {
   title: string;
@@ -21,10 +22,14 @@ export const Hero: React.FC<Hero> = ({ title, description, buttonsData }) => {
           {description}
         </p>
         <div className="md:text-left text-center">
-          <Button className="me-2" variant={"ghost"}>
-            {button1.name}
-          </Button>
-          <Button>{button2.name}</Button>
+          <Link href={button1.url}>
+            <Button className="me-2" variant={"ghost"}>
+              {button1.name}
+            </Button>
+          </Link>
+          <Link href={button2.url}>
+            <Button>{button2.name}</Button>
+          </Link>
         </div>
       </div>
       <div className=" lg:mt-0 lg:col-span-5 lg:flex">

@@ -2,8 +2,9 @@ import { MultiStepLoaderDemo } from "@/components/custom/FormModal";
 import { ImageShowCaseGrid } from "@/components/custom/gallery/LayoutGrid";
 import { Hero } from "@/components/custom/hero";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import { crudOperations } from "@/firebase/firestore-db/crud";
-import { testimonials } from "@/lib/dummyconst";
+import { content, testimonials } from "@/lib/dummyconst";
 
 export const revalidate = 1;
 
@@ -58,7 +59,7 @@ export default async function Home() {
         </div>
       </div>
        */}
-      {/* <StickyScroll content={content} /> */}
+      <StickyScroll content={content} />
     </main>
   );
 }

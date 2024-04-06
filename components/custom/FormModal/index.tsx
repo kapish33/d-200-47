@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 import { CustomModal } from "@/components/ui/custum-modal";
+import { SignupForm } from "../SignUp";
 
 export function MultiStepLoaderDemo() {
   const [loading, setLoading] = useState(false);
@@ -37,14 +38,14 @@ export function MultiStepLoaderDemo() {
   }, [lastScrollY, scrollDirection, loaderCanceled]);
 
   return (
-    <div className="w-full h-[60vh] flex items-center justify-center">
+    <div className="">
       {/* Core Loader Modal */}
       <CustomModal loading={loading} duration={2000}>
-        Will code user Form
+        <SignupForm />
       </CustomModal>
 
       {/* The button for manual loading */}
-      <button
+      {/* <button
         onClick={() => {
           setLoading(true);
           setLoaderCanceled(false); // Reset loader cancelation status
@@ -56,7 +57,7 @@ export function MultiStepLoaderDemo() {
         }}
       >
         Click to load
-      </button>
+      </button> */}
 
       {loading && (
         <button
