@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { navItems } from "@/lib/dummyconst";
 import Headers from "@/components/common/Header/headers";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/common/Theme/theme-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
