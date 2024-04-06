@@ -1,17 +1,42 @@
-import { PinContainer } from '@/components/ui/3d-pin';
-import { Button } from '@/components/ui/button';
-import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
-import { StickyScroll } from '@/components/ui/sticky-scroll-reveal';
-import { firebaseConfig } from '@/firebase/config';
-import { content, testimonials } from '@/lib/dummyconst';
-import Image from 'next/image';
+import { MultiStepLoaderDemo } from "@/components/custom/FormModal";
+import { ImageShowCaseGrid } from "@/components/custom/gallery/LayoutGrid";
+import { Hero } from "@/components/custom/hero";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { crudOperations } from "@/firebase/firestore-db/crud";
+import { testimonials } from "@/lib/dummyconst";
 
-export default function Home() {
-  const test = firebaseConfig;
-  // console.log("first",test);
+export const revalidate = 1;
+
+interface HeroData {
+  id: string;
+  description: string;
+  text: string;
+  buttons: { url: string; name: string }[];
+}
+
+export default async function Home() {
+  const heroData: HeroData = await crudOperations("GET_BY_ID", "user", {
+    id: "hero",
+  });
+
   return (
     <main>
-      <div className='flex min-h-screen flex-col items-center justify-between p-24'>
+      <Hero
+        title={heroData.text}
+        description={heroData.description}
+        buttonsData={heroData.buttons}
+      />
+      <ImageShowCaseGrid />
+      <div className="h-[20rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+        <InfiniteMovingCards
+          items={testimonials}
+          direction="right"
+          speed="slow"
+        />
+      </div>
+      <MultiStepLoaderDemo />
+
+      {/* <div className='flex min-h-screen flex-col items-center justify-between p-24'>
         <Button>Click me</Button>
         <div className='h-[40rem] w-full flex items-center justify-center '>
           {JSON.stringify(test)}
@@ -32,13 +57,7 @@ export default function Home() {
           </PinContainer>
         </div>
       </div>
-      <div className='h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden'>
-        <InfiniteMovingCards
-          items={testimonials}
-          direction='right'
-          speed='slow'
-        />
-      </div>
+       */}
       {/* <StickyScroll content={content} /> */}
     </main>
   );
