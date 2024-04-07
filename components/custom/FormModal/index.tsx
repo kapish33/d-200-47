@@ -1,13 +1,14 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { IconSquareRoundedX } from "@tabler/icons-react";
-import { CustomModal } from "@/components/ui/custum-modal";
-import { SignupForm } from "../SignUp";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { IconSquareRoundedX } from '@tabler/icons-react';
+import { CustomModal } from '@/components/ui/custum-modal';
+import { SignupForm } from '../SignUp';
+
 
 export function MultiStepLoaderDemo() {
   const [loading, setLoading] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
   const [loaderCanceled, setLoaderCanceled] = useState(false);
 
   useEffect(() => {
@@ -19,28 +20,28 @@ export function MultiStepLoaderDemo() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setScrollDirection(currentScrollY > lastScrollY ? "down" : "up");
+      setScrollDirection(currentScrollY > lastScrollY ? 'down' : 'up');
       setLastScrollY(currentScrollY);
 
-      if (scrollDirection === "up" && !loaderCanceled) {
+      if (scrollDirection === 'up' && !loaderCanceled) {
         setLoading(true);
         // Remove the scroll event listener once the loader is triggered
-        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener('scroll', handleScroll);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
       clearTimeout(timer);
     };
   }, [lastScrollY, scrollDirection, loaderCanceled]);
 
   return (
-    <div className="">
+    <div className=''>
       {/* Core Loader Modal */}
-      <CustomModal loading={loading} duration={2000}>
+      <CustomModal loading={loading}>
         <SignupForm />
       </CustomModal>
 
@@ -61,13 +62,12 @@ export function MultiStepLoaderDemo() {
 
       {loading && (
         <button
-          className="fixed top-4 right-4 text-black dark:text-white z-[120]"
+          className='fixed top-4 right-4 text-black dark:text-white z-[120]'
           onClick={() => {
             setLoading(false);
             setLoaderCanceled(true); // Mark loader as canceled
-          }}
-        >
-          <IconSquareRoundedX className="h-10 w-10" />
+          }}>
+          <IconSquareRoundedX className='h-10 w-10' />
         </button>
       )}
     </div>
