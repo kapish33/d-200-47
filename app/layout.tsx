@@ -3,10 +3,9 @@ import { Inter as FontSans } from "next/font/google";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { FloatingNav } from "@/components/ui/floating-navbar";
-import { navItems } from "@/lib/dummyconst";
 import Headers from "@/components/common/Header/headers";
 import { ThemeProvider } from "@/components/common/Theme/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -40,6 +39,7 @@ export default function RootLayout({
           {/* <FloatingNav navItems={navItems} /> */}
           <Headers />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
